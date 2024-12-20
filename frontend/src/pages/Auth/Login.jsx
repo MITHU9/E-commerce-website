@@ -30,13 +30,20 @@ const Login = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+
+    if (!email || !password) {
+      toast.error("Please fill in all fields");
+      return;
+    }
+
     try {
       const res = await login({ email, password }).unwrap();
       console.log(res);
       dispatch(setUser({ ...res }));
       navigate(redirect);
     } catch (err) {
-      toast.error(err?.data?.message || err.error);
+      console.log(err);
+      toast.error("Invalid credentials");
     }
   };
 

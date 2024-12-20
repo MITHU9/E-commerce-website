@@ -8,7 +8,7 @@ const createUser = asyncHandler(async (req, res) => {
   const { name, email, password, isAdmin } = req.body;
 
   if (!name || !email || !password) {
-    throw new Error("Please fill in all fields");
+    throw new Error("Please fill all the fields");
   }
 
   const salt = await bcrypt.genSalt(10);
@@ -42,7 +42,7 @@ const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    throw new Error("Please fill in all fields");
+    throw new Error("Please fill all the fields");
   }
 
   const user = await User.findOne({
