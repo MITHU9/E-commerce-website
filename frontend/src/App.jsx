@@ -8,7 +8,7 @@ function App() {
     <>
       <ToastContainer />
       <Navigation />
-      <main className="">
+      <main className="bg-[#000000eb] min-h-screen">
         <Outlet />
       </main>
     </>
