@@ -60,13 +60,11 @@ const ProductUpdate = () => {
     try {
       const res = await uploadProductImage(formData).unwrap();
       toast.success("Item added successfully", {
-        position: toast.POSITION.TOP_RIGHT,
         autoClose: 2000,
       });
       setImage(res.image);
     } catch (err) {
       toast.error(`${err.message}`, {
-        position: toast.POSITION.TOP_RIGHT,
         autoClose: 2000,
       });
     }
@@ -86,16 +84,14 @@ const ProductUpdate = () => {
       formData.append("countInStock", stock);
 
       // Update product using the RTK Query mutation
-      const data = await updateProduct({ productId: params._id, formData });
+      const { data } = await updateProduct({ productId: params._id, formData });
 
       if (data?.error) {
         toast.error(data.error, {
-          position: toast.POSITION.TOP_RIGHT,
           autoClose: 2000,
         });
       } else {
         toast.success(`Product successfully updated`, {
-          position: toast.POSITION.TOP_RIGHT,
           autoClose: 2000,
         });
         navigate("/admin/allproductslist");
@@ -103,7 +99,6 @@ const ProductUpdate = () => {
     } catch (err) {
       console.log(err);
       toast.error("Product update failed. Try again.", {
-        position: toast.POSITION.TOP_RIGHT,
         autoClose: 2000,
       });
     }
@@ -118,14 +113,12 @@ const ProductUpdate = () => {
 
       const { data } = await deleteProduct(params._id);
       toast.success(`"${data.name}" is deleted`, {
-        position: toast.POSITION.TOP_RIGHT,
         autoClose: 2000,
       });
       navigate("/admin/allproductslist");
     } catch (err) {
       console.log(err);
       toast.error("Delete failed. Try again.", {
-        position: toast.POSITION.TOP_RIGHT,
         autoClose: 2000,
       });
     }
@@ -133,7 +126,7 @@ const ProductUpdate = () => {
 
   return (
     <>
-      <div className="container  xl:mx-[9rem] sm:mx-[0]">
+      <div className="container text-gray-200 xl:mx-[9rem] sm:mx-[0]">
         <div className="flex flex-col md:flex-row">
           <AdminMenu />
           <div className="md:w-3/4 p-3">
@@ -144,14 +137,14 @@ const ProductUpdate = () => {
                 <img
                   src={image}
                   alt="product"
-                  className="block mx-auto w-full h-[40%]"
+                  className="block mx-auto h-[200px]"
                 />
               </div>
             )}
 
             <div className="mb-3">
-              <label className="text-white  py-2 px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11">
-                {image ? image.name : "Upload image"}
+              <label className="text-white  p-2 px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11">
+                {image ? image?.name : "Upload image"}
                 <input
                   type="file"
                   name="image"
