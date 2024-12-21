@@ -1,5 +1,4 @@
 import express from "express";
-const router = express.Router();
 
 import {
   createOrder,
@@ -14,6 +13,10 @@ import {
 } from "../controllers/orderController.js";
 
 import { authenticate, admin } from "../middlewares/authMiddleware.js";
+
+const router = express.Router();
+
+//console.log("stripe", stripe);
 
 router
   .route("/")
