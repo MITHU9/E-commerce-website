@@ -21,6 +21,12 @@ const Shop = () => {
   const categoriesQuery = useFetchCategoriesQuery();
   const [priceFilter, setPriceFilter] = useState("");
 
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   const filteredProductsQuery = useGetFilteredProductsQuery({
     checked,
     radio,
@@ -84,95 +90,98 @@ const Shop = () => {
   return (
     <>
       <div className="container mx-auto py-8 text-gray-200">
-        <div className="flex md:flex-row">
-          <div className="bg-[#151515] p-3 mt-2 mb-2">
-            <h2 className="h4 text-center py-2 bg-black rounded-full mb-2">
+        {/* Button to toggle sidebar on mobile */}
+        <div className="md:hidden mb-4 mt-16 p-2">
+          <button
+            className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-500"
+            onClick={toggleSidebar}
+          >
+            {isSidebarOpen ? "Close Filters" : "Open Filters"}
+          </button>
+        </div>
+
+        <div className="flex flex-col md:flex-row md:space-x-6 ">
+          {/* Sidebar */}
+          <div
+            className={`fixed md:static top-0 left-0 h-full w-3/4 md:w-1/4 bg-[#151515] p-4 z-50 transform transition-transform overflow-y-auto ${
+              isSidebarOpen ? "translate-x-0 mt-20 pb-28" : "-translate-x-full"
+            } md:translate-x-0`}
+          >
+            <h2 className="h4 text-center py-2 bg-black rounded-full mb-4">
               Filter by Categories
             </h2>
-
-            <div className="p-5 w-[15rem]">
+            <div className="p-4">
               {categories?.map((c) => (
-                <div key={c._id} className="mb-2">
-                  <div className="flex items-center mr-4">
+                <div key={c._id} className="mb-4">
+                  <label className="flex items-center">
                     <input
                       type="checkbox"
-                      id="red-checkbox"
                       onChange={(e) => handleCheck(e.target.checked, c._id)}
-                      className="w-4 h-4 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500 dark:focus:ring-pink-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      className="w-4 h-4 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-pink-500 dark:focus:ring-pink-600"
                     />
-
-                    <label
-                      htmlFor="pink-checkbox"
-                      className="ml-2 text-sm font-medium text-white dark:text-gray-300"
-                    >
-                      {c.name}
-                    </label>
-                  </div>
+                    <span className="ml-2 text-sm text-white">{c.name}</span>
+                  </label>
                 </div>
               ))}
             </div>
 
-            <h2 className="h4 text-center py-2 bg-black rounded-full mb-2">
+            <h2 className="h4 text-center py-2 bg-black rounded-full mb-4">
               Filter by Brands
             </h2>
-
-            <div className="p-5">
+            <div className="p-4">
               {uniqueBrands?.map((brand) => (
-                <>
-                  <div className="flex items-enter mr-4 mb-5">
-                    <input
-                      type="radio"
-                      id={brand}
-                      name="brand"
-                      onChange={() => handleBrandClick(brand)}
-                      className="w-4 h-4 text-pink-400 bg-gray-100 border-gray-300 focus:ring-pink-500 dark:focus:ring-pink-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-
-                    <label
-                      htmlFor="pink-radio"
-                      className="ml-2 text-sm font-medium text-white dark:text-gray-300"
-                    >
-                      {brand}
-                    </label>
-                  </div>
-                </>
+                <label key={brand} className="flex items-center mb-4">
+                  <input
+                    type="radio"
+                    name="brand"
+                    onChange={() => handleBrandClick(brand)}
+                    className="w-4 h-4 text-pink-600 bg-gray-100 border-gray-300 focus:ring-pink-500 dark:focus:ring-pink-600"
+                  />
+                  <span className="ml-2 text-sm text-white">{brand}</span>
+                </label>
               ))}
             </div>
 
-            <h2 className="h4 text-center py-2 bg-black rounded-full mb-2">
-              Filer by Price
+            <h2 className="h4 text-center py-2 bg-black rounded-full mb-4">
+              Filter by Price
             </h2>
-
-            <div className="p-5 w-[15rem]">
+            <div className="p-4">
               <input
                 type="text"
                 placeholder="Enter Price"
                 value={priceFilter}
                 onChange={handlePriceChange}
-                className="w-full px-3 py-2 placeholder-gray-400 border rounded-lg focus:outline-none focus:ring focus:border-pink-300 text-gray-200 bg-gray-700"
+                className="w-full px-3 py-2 placeholder-gray-400 border rounded-lg bg-gray-700 text-gray-200 focus:outline-none focus:ring focus:border-pink-300"
               />
             </div>
 
-            <div className="p-5 pt-0">
-              <button
-                className="w-full border my-4"
-                onClick={() => window.location.reload()}
-              >
-                Reset
-              </button>
-            </div>
+            <button
+              className="w-full mt-4 py-2 text-sm text-white bg-red-600 rounded-lg hover:bg-red-500"
+              onClick={() => window.location.reload()}
+            >
+              Reset Filters
+            </button>
           </div>
 
-          <div className="p-3">
-            <h2 className="h4 text-center font-semibold mb-2">
+          {/* Overlay for mobile sidebar */}
+          {isSidebarOpen && (
+            <div
+              className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+              onClick={toggleSidebar}
+            ></div>
+          )}
+
+          {/* Products Section */}
+          <div className="flex-1">
+            <h2 className="h4 text-center font-semibold mb-4">
               {products?.length} Products
             </h2>
-            <div className="flex flex-wrap">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-2">
               {products.length === 0 ? (
                 <Loader />
               ) : (
                 products?.map((p) => (
-                  <div className="p-3" key={p._id}>
+                  <div key={p._id}>
                     <ProductCard p={p} />
                   </div>
                 ))

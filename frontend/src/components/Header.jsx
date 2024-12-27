@@ -16,9 +16,10 @@ const Header = () => {
 
   return (
     <>
-      <div className="flex justify-around">
-        <div className="xl:block lg:hidden md:hidden:sm:hidden">
-          <div className="grid grid-cols-2 py-10">
+      <div className="flex flex-wrap justify-around gap-4">
+        {/* For larger screens */}
+        <div className="hidden xl:block lg:hidden md:hidden">
+          <div className="grid grid-cols-2 gap-4 py-10">
             {data.map((product) => (
               <div key={product._id}>
                 <SmallProduct product={product} />
@@ -26,6 +27,8 @@ const Header = () => {
             ))}
           </div>
         </div>
+
+        {/* Product carousel visible on all screen sizes */}
         <ProductCarousel />
       </div>
     </>

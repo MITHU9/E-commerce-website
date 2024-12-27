@@ -147,8 +147,7 @@ const Order = () => {
           </p>
 
           <p className="mb-4">
-            <strong className="text-pink-500">Name:</strong>{" "}
-            {order.user.username}
+            <strong className="text-pink-500">Name:</strong> {order.user.name}
           </p>
 
           <p className="mb-4">

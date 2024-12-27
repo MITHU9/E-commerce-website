@@ -29,10 +29,10 @@ const ProductTabs = ({
   };
 
   return (
-    <div className="flex flex-col md:flex-row">
-      <section className="mr-[5rem]">
+    <div className="flex flex-col justify-between md:flex-row gap-2 ">
+      <section className="lg:mr-[5rem]">
         <div
-          className={`flex-1 p-4 cursor-pointer text-lg ${
+          className={`flex-1 p-4 cursor-pointer md:text-lg ${
             activeTab === 1 ? "font-bold" : ""
           }`}
           onClick={() => handleTabClick(1)}
@@ -55,10 +55,25 @@ const ProductTabs = ({
         >
           Related Products
         </div>
+        <section className="md:hidden ml-12 md:ml-0 ">
+          {activeTab === 3 && (
+            <section className="md:ml-[4rem] flex flex-wrap ">
+              {!data ? (
+                <Loader />
+              ) : (
+                data.map((product) => (
+                  <div key={product._id}>
+                    <SmallProduct product={product} />
+                  </div>
+                ))
+              )}
+            </section>
+          )}
+        </section>
       </section>
 
       {/* Second Part */}
-      <section>
+      <section className=" md:flex-1 lg:flex-grow-0">
         {activeTab === 1 && (
           <div className="mt-4">
             {userInfo ? (
@@ -73,7 +88,7 @@ const ProductTabs = ({
                     required
                     value={rating}
                     onChange={(e) => setRating(e.target.value)}
-                    className="p-2 border rounded-lg xl:w-[40rem] text-gray-200 bg-gray-700"
+                    className="p-2 border rounded-lg xl:w-[40rem] w-full text-gray-200 bg-gray-700"
                   >
                     <option value="">Select</option>
                     <option value="1">Inferior</option>
@@ -95,7 +110,7 @@ const ProductTabs = ({
                     required
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
-                    className="p-2 border rounded-lg xl:w-[40rem] text-gray-200 bg-gray-700"
+                    className="p-2 border rounded-lg xl:w-[40rem] w-full text-gray-200 bg-gray-700"
                   ></textarea>
                 </div>
                 <button
@@ -141,10 +156,9 @@ const ProductTabs = ({
           </>
         )}
       </section>
-
-      <section>
+      <section className="hidden md:block">
         {activeTab === 3 && (
-          <section className="ml-[4rem] flex flex-wrap">
+          <section className="md:ml-[4rem] flex flex-wrap">
             {!data ? (
               <Loader />
             ) : (

@@ -20,7 +20,7 @@ const Navigation = () => {
   const { cartItems } = useSelector((state) => state.cart);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [showSidebar, setShowSidebar] = useState(true);
+  const [showSidebar, setShowSidebar] = useState(false);
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -132,7 +132,7 @@ const Navigation = () => {
 
         {dropdownOpen && userInfo && (
           <ul
-            className={`absolute right-0 mt-2 mr-14 space-y-2 bg-black text-gray-300 ${
+            className={`absolute right-0 -mt-4 mr-14 space-y-2 bg-black text-gray-300 ${
               !userInfo.isAdmin ? "-top-20" : "-top-80"
             } `}
           >

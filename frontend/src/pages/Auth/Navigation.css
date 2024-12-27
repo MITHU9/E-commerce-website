@@ -1,9 +1,17 @@
+/* Base styles for navigation container */
 #navigation-container {
   width: 4%;
   transition: width 0.3s ease-in-out;
-  overflow: hidden; /* Hide overflowing content during transition */
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  background-color: #000;
+  z-index: 9999;
 }
 
+/* Expand on hover */
 #navigation-container:hover {
   width: 15%;
 }
@@ -11,7 +19,8 @@
 /* Initially hide nav-item-name */
 .nav-item-name {
   display: none;
-  transition: opacity 0.2s ease-in-out; /* Add opacity transition */
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
 }
 
 #navigation-container:hover .nav-item-name {
@@ -19,18 +28,90 @@
   opacity: 1;
 }
 
-.search-input {
-  display: none;
-  opacity: 0;
-  transition: opacity 0.2s ease-in-out; /* Add opacity transition */
+/* Responsive styles */
+@media screen and (max-width: 1024px) {
+  #navigation-container {
+    width: 8%;
+  }
+
+  #navigation-container:hover {
+    width: 20%;
+  }
+
+  .nav-item-name {
+    font-size: 12px;
+  }
 }
 
-#navigation-container:hover .search-input {
-  display: block;
-  opacity: 1;
+@media screen and (max-width: 768px) {
+  #navigation-container {
+    width: 10%;
+    flex-direction: row;
+    height: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #navigation-container:hover {
+    width: 10%;
+  }
+
+  .nav-item-name {
+    display: none;
+  }
+
+  .search-input {
+    display: none !important;
+  }
 }
 
-#navigation-container:hover .search-icon {
-  display: none;
-  transition: opacity 0.2s ease-in-out; /* Add opacity transition */
+@media screen and (max-width: 480px) {
+  #navigation-container {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 80px;
+    padding: 8px 0 8px 0;
+    position: fixed;
+    bottom: 0;
+  }
+
+  #navigation-container:hover {
+    width: 100%;
+  }
+
+  .nav-item-name {
+    display: none;
+  }
+
+  .search-input {
+    display: none !important;
+  }
+
+  .flex {
+    flex-direction: row;
+  }
+}
+
+/* Adjust icon size for smaller screens */
+@media screen and (max-width: 320px) {
+  .nav-item-name {
+    display: none;
+  }
+
+  #navigation-container {
+    height: 50px;
+  }
+
+  .flex {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
 }

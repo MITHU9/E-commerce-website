@@ -22,21 +22,21 @@ const Home = () => {
         </Message>
       ) : (
         <>
-          <div className="flex justify-between items-center">
-            <h1 className="ml-[20rem] text-gray-200 mt-[10rem] text-[3rem]">
+          <div className="flex justify-between items-center gap-8 md:px-16 px-4">
+            <h1 className="lg:ml-[20rem] ml-10 text-center text-gray-200 mt-[10rem] lg:text-[3rem] md:text-2xl text-xl font-semibold">
               Special Products
             </h1>
 
             <Link
               to="/shop"
-              className="bg-pink-600 font-bold rounded-full py-2 px-10 mr-[18rem] mt-[10rem] text-gray-200"
+              className="bg-pink-600 font-bold rounded-full py-2 px-10 lg:mr-[18rem] mt-[10rem] md:ml-0 text-gray-200"
             >
               Shop
             </Link>
           </div>
 
           <div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-[2rem] text-gray-200 px-20 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-[2rem] text-gray-200 md:px-20 md:gap-8 gap-4">
               {data.products.map((product) => (
                 <div key={product._id}>
                   <Product product={product} />

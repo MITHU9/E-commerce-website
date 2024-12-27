@@ -79,7 +79,7 @@ const ProductDetails = () => {
         </Message>
       ) : (
         <>
-          <div className="grid grid-cols-1 lg:grid-cols-2 mt-8 gap-8 px-4 sm:px-8 lg:px-20 py-8 text-gray-200 ml-12 relative">
+          <div className="grid grid-cols-1 lg:grid-cols-2 mt-8 gap-8 px-4 sm:px-8 lg:px-20 py-8 text-gray-200 md:ml-12 relative ">
             {/* Left Section */}
             <div>
               <img
@@ -93,9 +93,9 @@ const ProductDetails = () => {
             </div>
 
             {/* Right Section */}
-            <div className="flex flex-col justify-between">
+            <div className="md:flex flex-col justify-between">
               {/* Product Name */}
-              <h2 className="text-2xl font-semibold text-center lg:text-left">
+              <h2 className="text-xl md:text-2xl font-semibold text-center lg:text-left">
                 {product.name}
               </h2>
 
@@ -110,8 +110,8 @@ const ProductDetails = () => {
               </p>
 
               {/* Product Details */}
-              <div className="flex flex-wrap gap-20 items-center lg:flex-nowrap">
-                <div className="space-y-4">
+              <div className="flex flex-wrap md:gap-20 items-center lg:flex-nowrap">
+                <div className="md:space-y-4 space-y-2">
                   <h1 className="flex items-center">
                     <FaStore className="mr-2 text-white" /> Brand:{" "}
                     {product.brand}
@@ -126,7 +126,7 @@ const ProductDetails = () => {
                   </h1>
                 </div>
 
-                <div className="space-y-4 mt-6 lg:mt-0">
+                <div className="md:space-y-4 space-y-2 mt-6 lg:mt-0 ml-2">
                   <h1 className="flex items-center">
                     <FaStar className="mr-2 text-white" /> Ratings: {rating}
                   </h1>
@@ -142,7 +142,7 @@ const ProductDetails = () => {
               </div>
 
               {/* Product Actions */}
-              <div className="flex flex-wrap gap-32 mt-4 items-center">
+              <div className="flex flex-wrap gap-8 md:gap-32 md:mt-4 mt-2 items-center">
                 <Ratings
                   value={product.rating}
                   text={`${product.numReviews} reviews`}
@@ -176,7 +176,7 @@ const ProductDetails = () => {
           </div>
 
           {/* Product Tabs */}
-          <div className="mt-16 ml-12 px-4 sm:px-8 lg:px-20 text-gray-200">
+          <div className="md:mt-16 md:ml-12 px-4 sm:px-8 lg:px-20 text-gray-200 pb-8">
             <ProductTabs
               loadingProductReview={loadingProductReview}
               userInfo={userInfo}
