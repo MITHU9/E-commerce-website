@@ -48,12 +48,12 @@ const Profile = () => {
 
   return (
     <div className=" bg-[#000000eb] min-h-screen">
-      <div className="flex justify-center align-center md:flex md:space-x-4 py-16">
+      <div className="px-4 mt-12 md:mt-0 justify-center align-center md:flex md:space-x-4 py-16">
         <div className="md:w-1/3">
           <h2 className="text-2xl text-gray-200 font-semibold mb-4">
             Update Profile
           </h2>
-          <form onSubmit={submitHandler}>
+          <form onSubmit={submitHandler} className="w-full">
             <div className="mb-4">
               <label className="block text-white mb-2">Name</label>
               <input
