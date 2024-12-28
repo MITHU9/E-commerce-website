@@ -1,4 +1,3 @@
-import Chart from "react-apexcharts";
 import { useGetUsersQuery } from "../../redux/api/userApiSlice";
 import {
   useGetTotalOrdersQuery,
@@ -17,7 +16,7 @@ const AdminDashboard = () => {
   const { data: orders, isLoading: loadingTwo } = useGetTotalOrdersQuery();
   const { data: salesDetail } = useGetTotalSalesByDateQuery();
 
-  const [state, setState] = useState({
+  const [setState] = useState({
     options: {
       chart: {
         type: "line",
@@ -67,7 +66,7 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     if (salesDetail) {
-      const formattedSalesDate = salesDetail.map((item) => ({
+      const formattedSalesDate = salesDetail?.map((item) => ({
         x: item._id,
         y: item.totalSales,
       }));
@@ -131,14 +130,14 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        <div className="ml-[10rem] mt-[4rem] bg-white/5 text-white">
+        {/* <div className="ml-[10rem] mt-[4rem] bg-white/5 text-white bg-white">
           <Chart
             options={state.options}
             series={state.series}
             type="bar"
             width="70%"
           />
-        </div>
+        </div> */}
 
         <div className="mt-[4rem]">
           <OrderList />

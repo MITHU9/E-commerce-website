@@ -53,7 +53,7 @@ const PlaceOrder = () => {
       );
 
       if (res) {
-        const res = await createOrder({
+        await createOrder({
           orderItems: cart.cartItems,
           shippingAddress: cart.shippingAddress,
           paymentMethod: cart.paymentMethod,
@@ -63,7 +63,6 @@ const PlaceOrder = () => {
           totalPrice: cart.totalPrice,
         }).unwrap();
         dispatch(clearCartItems());
-        navigate(`/order/${res._id}`);
       }
 
       const session = await res.json();

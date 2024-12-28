@@ -89,7 +89,7 @@ const Shop = () => {
 
   return (
     <>
-      <div className="container mx-auto py-8 text-gray-200">
+      <div className="container mx-auto py-8 md:pl-12 lg:pl-16  text-gray-200">
         {/* Button to toggle sidebar on mobile */}
         <div className="md:hidden mb-4 mt-16 p-2">
           <button
@@ -110,9 +110,9 @@ const Shop = () => {
             <h2 className="h4 text-center py-2 bg-black rounded-full mb-4">
               Filter by Categories
             </h2>
-            <div className="p-4">
+            <div className="p-4 ">
               {categories?.map((c) => (
-                <div key={c._id} className="mb-4">
+                <div key={c._id} className="mb-4 text-center">
                   <label className="flex items-center">
                     <input
                       type="checkbox"
@@ -176,7 +176,7 @@ const Shop = () => {
             <h2 className="h4 text-center font-semibold mb-4">
               {products?.length} Products
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:col-span-2 lg:col-span-2 xl:grid-cols-3 gap-6 px-2">
               {products.length === 0 ? (
                 <Loader />
               ) : (

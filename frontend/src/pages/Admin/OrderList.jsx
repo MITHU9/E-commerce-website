@@ -7,7 +7,7 @@ import AdminMenu from "./AdminMenu";
 const OrderList = () => {
   const { data: orders, isLoading, error } = useGetOrdersQuery();
 
-  console.log(orders);
+  //console.log(orders);
 
   return (
     <>
@@ -22,21 +22,21 @@ const OrderList = () => {
           <table className="container mx-auto ">
             <AdminMenu />
 
-            <thead className="w-full border text-white ">
+            <thead className="w-full  border text-white ">
               <tr className="mb-[5rem]">
-                <th className="text-left pl-1">ITEMS</th>
-                <th className="text-left pl-1">ID</th>
-                <th className="text-left pl-1">USER</th>
-                <th className="text-left pl-1">DATA</th>
-                <th className="text-left pl-1">TOTAL</th>
-                <th className="text-left pl-1">PAID</th>
-                <th className="text-left pl-1">DELIVERED</th>
+                <th className="text-center lg:text-left  pl-1">ITEMS</th>
+                <th className="text-center lg:text-left pl-1">ORDER_ID</th>
+                <th className="text-center lg:text-left pl-1">USER_ID</th>
+                <th className="text-center lg:text-left pl-1">DATA</th>
+                <th className="text-center lg:text-left pl-1">TOTAL</th>
+                <th className="text-center lg:text-left pl-1">PAID</th>
+                <th className="text-center lg:text-left pl-1">DELIVERED</th>
                 <th></th>
               </tr>
             </thead>
 
             <tbody className="text-white">
-              {orders.map((order) => (
+              {orders?.map((order) => (
                 <tr key={order._id}>
                   <td>
                     <img
@@ -48,7 +48,7 @@ const OrderList = () => {
                   <td>{order._id}</td>
 
                   <td className="text-white">
-                    {order.user ? order.user.name : "N/A"}
+                    {order.user ? order.user._id : "N/A"}
                   </td>
 
                   <td>
@@ -59,11 +59,11 @@ const OrderList = () => {
 
                   <td className="py-2">
                     {order.isPaid ? (
-                      <p className="p-1 text-center bg-green-400 w-[6rem] rounded-full">
+                      <p className="p-1 text-center lg:text-left bg-green-400 w-[6rem] rounded-full">
                         Completed
                       </p>
                     ) : (
-                      <p className="p-1 text-center bg-red-400 w-[6rem] rounded-full">
+                      <p className="p-1 text-center lg:text-left bg-red-400 w-[6rem] rounded-full">
                         Pending
                       </p>
                     )}
@@ -71,11 +71,11 @@ const OrderList = () => {
 
                   <td className="px-2 py-2">
                     {order.isDelivered ? (
-                      <p className="p-1 text-center bg-green-400 w-[6rem] rounded-full">
+                      <p className="p-1 text-center lg:text-left bg-green-400 w-[6rem] rounded-full">
                         Completed
                       </p>
                     ) : (
-                      <p className="p-1 text-center bg-red-400 w-[6rem] rounded-full">
+                      <p className="p-1 text-center lg:text-left bg-red-400 w-[6rem] rounded-full">
                         Pending
                       </p>
                     )}
