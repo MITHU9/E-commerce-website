@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message";
 import ProgressSteps from "../../components/ProgressSteps";
 import Loader from "../../components/Loader";
 import { useCreateOrderMutation } from "../../redux/api/orderApiSlice";
 import { clearCartItems } from "../../redux/features/cart/cartSlice";
+import { loadStripe } from "@stripe/stripe-js";
 
 const PlaceOrder = () => {
   const navigate = useNavigate();
@@ -24,8 +24,12 @@ const PlaceOrder = () => {
   const dispatch = useDispatch();
 
   const placeOrderHandler = async () => {
+    const stripe = await loadStripe(
+      "pk_test_51Q0c6JHQl0JNWzy5KRE2e9c3BgaSSgTsQ2db7T8df0TkUmarMLN9dDr3eNF7D1Q76JKoQGmzBocGqQ5Z52p079pl00cGdscel8"
+    );
+
     try {
-      const res = await createOrder({
+      const body = {
         orderItems: cart.cartItems,
         shippingAddress: cart.shippingAddress,
         paymentMethod: cart.paymentMethod,
@@ -33,11 +37,45 @@ const PlaceOrder = () => {
         shippingPrice: cart.shippingPrice,
         taxPrice: cart.taxPrice,
         totalPrice: cart.totalPrice,
-      }).unwrap();
-      dispatch(clearCartItems());
-      navigate(`/order/${res._id}`);
+      };
+
+      const headers = {
+        "Content-Type": "application/json",
+      };
+
+      const res = await fetch(
+        "http://localhost:5000/api/stripe-checkout-session",
+        {
+          method: "POST",
+          headers,
+          body: JSON.stringify(body),
+        }
+      );
+
+      if (res) {
+        const res = await createOrder({
+          orderItems: cart.cartItems,
+          shippingAddress: cart.shippingAddress,
+          paymentMethod: cart.paymentMethod,
+          itemsPrice: cart.itemsPrice,
+          shippingPrice: cart.shippingPrice,
+          taxPrice: cart.taxPrice,
+          totalPrice: cart.totalPrice,
+        }).unwrap();
+        dispatch(clearCartItems());
+        // navigate(`/order/${res._id}`);
+      }
+
+      const session = await res.json();
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.id,
+      });
+
+      if (result.error) {
+        console.log(result.error.message);
+      }
     } catch (error) {
-      toast.error(error);
+      console.log(error);
     }
   };
 
