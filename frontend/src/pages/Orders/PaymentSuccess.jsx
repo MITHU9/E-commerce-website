@@ -57,7 +57,9 @@ const PaymentSuccess = () => {
               Go to Home
             </button>
             <button
-              onClick={() => (window.location.href = "/orders")}
+              onClick={() =>
+                (window.location.href = "/order/676f7d919e334d57072b802e")
+              }
               className="px-6 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition"
             >
               View My Orders
