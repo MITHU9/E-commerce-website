@@ -14,9 +14,7 @@ const OrderList = () => {
       {isLoading ? (
         <Loader />
       ) : error ? (
-        <Message variant="danger">
-          {error?.data?.message || error.error}
-        </Message>
+        <Message variant="danger">{error?.data || error.error}</Message>
       ) : (
         <div className="pt-10">
           <table className="container mx-auto ">
@@ -59,23 +57,23 @@ const OrderList = () => {
 
                   <td className="py-2">
                     {order.isPaid ? (
-                      <p className="p-1 text-center lg:text-left bg-green-400 w-[6rem] rounded-full">
+                      <p className="p-1 text-center  bg-green-400 w-[6rem] rounded-full">
                         Completed
                       </p>
                     ) : (
-                      <p className="p-1 text-center lg:text-left bg-red-400 w-[6rem] rounded-full">
+                      <p className="p-1 text-center  bg-red-400 w-[6rem] rounded-full">
                         Pending
                       </p>
                     )}
                   </td>
 
-                  <td className="px-2 py-2">
+                  <td className="px-2 py-2 text-center">
                     {order.isDelivered ? (
-                      <p className="p-1 text-center lg:text-left bg-green-400 w-[6rem] rounded-full">
+                      <p className="p-1 text-center bg-green-400 w-[6rem] rounded-full">
                         Completed
                       </p>
                     ) : (
-                      <p className="p-1 text-center lg:text-left bg-red-400 w-[6rem] rounded-full">
+                      <p className="p-1 text-center bg-red-400 w-[6rem] rounded-full">
                         Pending
                       </p>
                     )}

@@ -65,7 +65,7 @@ const ProductDetails = () => {
 
   return (
     <div>
-      <div className="pt-12 px-4 ml-12 mt-4 sm:px-8 lg:px-20 ">
+      <div className="pt-12 px-4 ml-12 mt-4 sm:px-8 lg:px-20 md:mt-0">
         <Link to="/" className="text-white font-semibold hover:underline">
           Go Back
         </Link>

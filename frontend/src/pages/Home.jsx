@@ -9,7 +9,7 @@ const Home = () => {
   const { keyword } = useParams();
   const { data, isLoading, isError } = useGetProductsQuery({ keyword });
 
-  console.log(data);
+  //console.log(data);
 
   return (
     <>
@@ -17,9 +17,7 @@ const Home = () => {
       {isLoading ? (
         <Loader />
       ) : isError ? (
-        <Message variant="danger">
-          {isError?.data.message || isError.error}
-        </Message>
+        <Message variant="danger">{isError?.data || isError?.error}</Message>
       ) : (
         <>
           <div className="flex justify-between items-center gap-8 md:px-16 px-4">
@@ -37,7 +35,7 @@ const Home = () => {
 
           <div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-[2rem] text-gray-200 md:px-20 md:gap-8 gap-4">
-              {data.products.map((product) => (
+              {data?.products.map((product) => (
                 <div key={product._id}>
                   <Product product={product} />
                 </div>

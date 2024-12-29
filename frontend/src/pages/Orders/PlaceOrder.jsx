@@ -70,8 +70,8 @@ const PlaceOrder = () => {
         sessionId: session.id,
       });
 
-      if (result.error) {
-        console.log(result.error.message);
+      if (result?.error) {
+        console.log(result.error?.message);
       }
     } catch (error) {
       console.log(error);

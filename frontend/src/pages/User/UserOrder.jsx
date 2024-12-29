@@ -13,7 +13,7 @@ const UserOrder = () => {
       {isLoading ? (
         <Loader />
       ) : error ? (
-        <Message variant="danger">{error?.data?.error || error.error}</Message>
+        <Message variant="danger">{error?.data?.error || error?.error}</Message>
       ) : (
         <div className="overflow-x-auto">
           <table className="min-w-full table-auto">

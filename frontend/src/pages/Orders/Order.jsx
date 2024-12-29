@@ -59,7 +59,7 @@ const Order = () => {
   return isLoading ? (
     <Loader />
   ) : error ? (
-    <Message variant="danger">{error.data.message}</Message>
+    <Message variant="danger">{error.data?.message}</Message>
   ) : (
     <div className="container mt-8 md:mt-0 mx-auto text-white pt-12 px-4 py-2">
       <div className="flex flex-col md:ml-20 xl:ml-0 xl:flex-row lg:pl-12 xl:pl-0">

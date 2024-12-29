@@ -226,11 +226,7 @@ const Navigation = () => {
       <div className="sm:hidden fixed top-0 left-0 z-50 w-full bg-black text-white">
         <div className="flex justify-between items-center p-4">
           <h1 className="text-lg">
-            <img
-              className="size-10 rounded-full"
-              src="/public/logo.webp"
-              alt="logo"
-            />
+            <img className="size-10 rounded-full" src="/logo.webp" alt="logo" />
           </h1>
           <button onClick={toggleMobileMenu}>
             {isMobileMenuOpen ? <BiX size={30} /> : <BiMenu size={30} />}

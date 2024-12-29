@@ -16,7 +16,7 @@ const AdminDashboard = () => {
   const { data: orders, isLoading: loadingTwo } = useGetTotalOrdersQuery();
   const { data: salesDetail } = useGetTotalSalesByDateQuery();
 
-  const [setState] = useState({
+  const [state, setState] = useState({
     options: {
       chart: {
         type: "line",

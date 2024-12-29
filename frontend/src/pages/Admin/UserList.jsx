@@ -31,7 +31,7 @@ const UserList = () => {
         await deleteUser(id);
         refetch();
       } catch (err) {
-        toast.error(err?.data?.message || err.error);
+        toast.error(err?.data || err?.error);
       }
     }
   };
@@ -52,7 +52,7 @@ const UserList = () => {
       setEditableUserId(null);
       refetch();
     } catch (err) {
-      toast.error(err?.data?.message || err.error);
+      toast.error(err?.data || err.error);
     }
   };
 
@@ -63,9 +63,7 @@ const UserList = () => {
       {isLoading ? (
         <Loader />
       ) : error ? (
-        <Message variant="danger">
-          {error?.data?.message || error.error}
-        </Message>
+        <Message variant="danger">{error?.data || error?.error}</Message>
       ) : (
         <div className="flex flex-col md:flex-row">
           <AdminMenu />

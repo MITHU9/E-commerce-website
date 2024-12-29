@@ -15,7 +15,7 @@ const ProductUpdate = () => {
 
   const { data: productData } = useGetProductByIdQuery(params._id);
 
-  console.log(productData);
+  //console.log(productData);
 
   const [image, setImage] = useState(productData?.image || "");
   const [name, setName] = useState(productData?.name || "");
@@ -62,9 +62,9 @@ const ProductUpdate = () => {
       toast.success("Item added successfully", {
         autoClose: 2000,
       });
-      setImage(res.image);
+      setImage(res?.image);
     } catch (err) {
-      toast.error(`${err.message}`, {
+      toast.error(`${err?.message}`, {
         autoClose: 2000,
       });
     }
@@ -87,7 +87,7 @@ const ProductUpdate = () => {
       const { data } = await updateProduct({ productId: params._id, formData });
 
       if (data?.error) {
-        toast.error(data.error, {
+        toast.error(data?.error, {
           autoClose: 2000,
         });
       } else {
