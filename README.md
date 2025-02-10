@@ -13,7 +13,16 @@ Currently, two official plugins are available:
 
 Welcome to our E-Commerce Website! This platform allows users to browse products, add them to their cart, and proceed to checkout seamlessly.
 
-<img src="/home.png" alt="Homepage Screenshot" width="800">
+<div>
+<img src="./frontend/public/home.png" alt="Homepage Screenshot" width="800">
+### Product Page
+
+<img src="./frontend/public/product.png" alt="Product Page Screenshot" width="800">
+
+### Shopping Cart
+
+<img src="./frontend/public/shopping.png" alt="Shopping Cart Screenshot" width="800">
+</div>
 
 ## Features
 
@@ -46,14 +55,6 @@ npm start
 ```
 
 ## Screenshots
-
-### Product Page
-
-<img src="product.png" alt="Product Page Screenshot" width="800">
-
-### Shopping Cart
-
-<img src="/shopping.png" alt="Shopping Cart Screenshot" width="800">
 
 ## Contributing
 
